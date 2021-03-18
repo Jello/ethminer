@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.5)
-
+cmake_minimum_required(VERSION 3.9)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 include(cmake/cable/bootstrap.cmake)
 
 include(CableBuildInfo)
@@ -21,7 +21,8 @@ HunterGate(
 
 project(ethminer)
 set(PROJECT_VERSION 0.19.0)
-
+include(CheckIPOSupported)
+ check_ipo_supported(RESULT ipo_supported OUTPUT output)
 cable_set_build_type(DEFAULT Release CONFIGURATION_TYPES Release RelWithDebInfo)
 
 option(ETHASHCL "Build with OpenCL mining" ON)
